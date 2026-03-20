@@ -1,0 +1,82 @@
+{
+  "name": "pydebugai",
+  "displayName": "PyDebugAI — Python Debug Assistant",
+  "description": "AI-powered Python debugging assistant. Error squiggles, hover hints, and fix suggestions powered by CodeBERT & ML.",
+  "version": "0.1.0",
+  "publisher": "pydebugai",
+  "engines": { "vscode": "^1.85.0" },
+  "categories": ["Programming Languages", "Linters", "Other"],
+  "keywords": ["python", "debug", "ai", "error", "fix", "linter"],
+  "icon": "images/icon.png",
+  "activationEvents": ["onLanguage:python"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pydebugai.analyzeFile",
+        "title": "PyDebugAI: Analyze & Debug This File",
+        "icon": "$(bug)"
+      },
+      {
+        "command": "pydebugai.startServer",
+        "title": "PyDebugAI: Start AI Server"
+      },
+      {
+        "command": "pydebugai.showStats",
+        "title": "PyDebugAI: Show Learning Statistics"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "pydebugai.analyzeFile",
+          "when": "resourceLangId == python",
+          "group": "navigation"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pydebugai-sidebar",
+          "title": "PyDebugAI",
+          "icon": "$(bug)"
+        }
+      ]
+    },
+    "views": {
+      "pydebugai-sidebar": [
+        {
+          "type": "webview",
+          "id": "pydebugai.sidebarView",
+          "name": "Debug Assistant"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PyDebugAI",
+      "properties": {
+        "pydebugai.serverPort": {
+          "type": "number",
+          "default": 7432,
+          "description": "Port for the local PyDebugAI server"
+        },
+        "pydebugai.analyzeOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically analyze Python files on save"
+        },
+        "pydebugai.enableExecution": {
+          "type": "boolean",
+          "default": false,
+          "description": "Execute Python files during analysis (disable for untrusted code)"
+        },
+        "pydebugai.pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Path to Python interpreter"
+        }
+      }
+    }
+  }
+}

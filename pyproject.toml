@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pydebugai"
+version = "0.1.0"
+description = "AI-powered Python debugging assistant — ChatGPT for Python errors"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+
+[project.scripts]
+pydebugai = "pydebugai.cli:main"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "data*"]
